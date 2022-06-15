@@ -11,7 +11,6 @@ module "module_server"{
     source = "./server"
     public_subnet = module.module_network.public_subnet
     security_group = [module.module_network.security_group]
-    instance_profile = module.module_s3.instance_profile
 }
 
 module "module_s3" {

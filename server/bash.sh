@@ -18,18 +18,18 @@ sudo apt install php-mbstring php-xml php-bcmath
 composer create-project --prefer-dist laravel/laravel danhsach
 cd danhsach
 php artisan 
-aws s3 cp s3:///bucket123456abc/env.txt /var/www/danhsach/.env
+aws s3 cp s3://my-tf-test-bucket112/env.txt /var/www/danhsach/.env
 sudo mv ~/danhsach /var/www/danhsach
 sudo chown -R www-data.www-data /var/www/danhsach/storage 
 sudo chown -R www-data.www-data /var/www/danhsach/bootstrap/cache 
-aws s3 cp s3:///bucket123456abc/nginx.txt /etc/nginx/sites-enabled/danhsach
+aws s3 cp s3://my-tf-test-bucket112/nginx.txt /etc/nginx/sites-enabled/danhsach
 sudo ln -s /etc/nginx/sites-available/danhsach/etc/nginx/sites-enabled/ 
 sudo nginx -t 
 sudo systemctl reload nginx 
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
 sudo cp /etc/ssl/private/nginx-selfsigned.key /etc/nginx/snippets/self-signed.conf
 sudo cp /etc/ssl/certs/nginx-selfsigned.crt /etc/nginx/snippets/self-signed.conf
-aws s3 cp s3:///bucket123456abc/ssl-params.txt /etc/nginx/snippets/ssl-params.conf
+aws s3 cp s3://my-tf-test-bucket112/ssl-params.txt /etc/nginx/snippets/ssl-params.conf
 sudo ufw allow 'Nginx Full'
 sudo ufw delete allow 'Nginx HTTP'
 sudo systemctl restart nginx

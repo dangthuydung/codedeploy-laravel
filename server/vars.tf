@@ -15,5 +15,3 @@ variable "key_name" {
 variable "security_group" {
     type = list
 }
-
-variable "instance_profile" {}
